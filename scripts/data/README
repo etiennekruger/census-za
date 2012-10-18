@@ -1,0 +1,7 @@
+This directory should contain the relevant census files which can be downloaded from here:
+census.hackshackers.co.za/static/indicators.tgz
+
+This command should do the right thing:
+
+wget -O - census.hackshackers.co.za/static/indicators.tgz | tar -zx
+
