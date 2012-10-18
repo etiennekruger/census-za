@@ -33,7 +33,7 @@ map1.add(po.image()
 	     .hosts(["a.", "b.", "c.", ""])));
 
 map1.add(po.image()
-	.url(po.url("http://tiles.acscomputers.co.za/hhincome/{Z}/{X}/{Y}.png")));
+	.url(po.url("/static/tiles/hh_income/{Z}/{X}/{Y}.png")));
 
 var map2 = po.map()
     .container(document.getElementById("map1").appendChild(po.svg("svg")))
@@ -48,7 +48,7 @@ map2.add(po.image()
 	     .hosts(["a.", "b.", "c.", ""])));
 
 map2.add(po.image()
-	.url(po.url("http://tiles.acscomputers.co.za/hh_density/{Z}/{X}/{Y}.png")));
+	.url(po.url("/static/tiles/hh_density/{Z}/{X}/{Y}.png")));
 
     </script>
   </body>
