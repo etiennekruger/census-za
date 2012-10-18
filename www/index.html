@@ -2,13 +2,19 @@
   <head>
     <title>Census 2001 - Demo</title>
     <style>
-    #map1 {
-        width: 100%;
-        height: 50%;
+    #map1, #map2, #map3, #map4 {
+        width: 49%;
+        height: 49%;
+        float: left;
+        border: solid thin black;
     }
-    #map2 {
-        width: 100%;
-        height: 50%;
+
+    #map1, #map2 {
+        padding-bottom: 5px;
+    }
+
+    #map3, #map4 {
+        padding-top: 2px;
     }
     </style>
     <script src="polymaps.min.js"></script>
@@ -16,6 +22,8 @@
   <body>
     <div id="map1"></div>
     <div id="map2"></div>
+    <div id="map3"></div>
+    <div id="map4"></div>
     <script>
 var po = org.polymaps;
 
@@ -36,7 +44,7 @@ map1.add(po.image()
 	.url(po.url("/static/tiles/hh_income/{Z}/{X}/{Y}.png")));
 
 var map2 = po.map()
-    .container(document.getElementById("map1").appendChild(po.svg("svg")))
+    .container(document.getElementById("map2").appendChild(po.svg("svg")))
     .center({lat: -28.6, lon: 23.2})
     .zoom(4)
     .zoomRange([4, 12])
@@ -48,6 +56,37 @@ map2.add(po.image()
 	     .hosts(["a.", "b.", "c.", ""])));
 
 map2.add(po.image()
+	.url(po.url("/static/tiles/hh_density/{Z}/{X}/{Y}.png")));
+
+var map3 = po.map()
+    .container(document.getElementById("map3").appendChild(po.svg("svg")))
+    .center({lat: -28.6, lon: 23.2})
+    /*.centerRange([{lat: -45.0, lon: 11.25}, {lat: -22.5, lon: 45.0}])*/
+    .zoom(4)
+    .zoomRange([4, 12])
+    .add(po.interact())
+    .add(po.hash());
+
+map3.add(po.image()
+	.url(po.url("http://{S}tile.openstreetmap.org/{Z}/{X}/{Y}.png")
+	     .hosts(["a.", "b.", "c.", ""])));
+
+map3.add(po.image()
+	.url(po.url("/static/tiles/hh_income/{Z}/{X}/{Y}.png")));
+
+var map4 = po.map()
+    .container(document.getElementById("map4").appendChild(po.svg("svg")))
+    .center({lat: -28.6, lon: 23.2})
+    .zoom(4)
+    .zoomRange([4, 12])
+    .add(po.interact())
+    .add(po.hash());
+
+map4.add(po.image()
+	.url(po.url("http://{S}tile.openstreetmap.org/{Z}/{X}/{Y}.png")
+	     .hosts(["a.", "b.", "c.", ""])));
+
+map4.add(po.image()
 	.url(po.url("/static/tiles/hh_density/{Z}/{X}/{Y}.png")));
 
     </script>
