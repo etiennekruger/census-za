@@ -1,0 +1,71 @@
+<Map background-color="transparent" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
+<!-- <Map background-color="transparent" srs="+proj=longlat +datum=WGS84"> -->
+
+  <Style name="sequential">
+    <Rule>
+      <Filter>[value] &gt;= 0 and [value] &lt; 0.00012</Filter>
+      <PolygonSymbolizer fill="#e6fffa" fill-opacity="0.75" />
+      <LineSymbolizer stroke-width="0" />
+    </Rule>
+    <Rule>
+      <Filter>[value] &gt;= 0.00012 and [value] &lt; 0.00040</Filter>
+      <PolygonSymbolizer fill="#b3fff0" fill-opacity="0.75" />
+      <LineSymbolizer stroke-width="0" />
+    </Rule>
+    <Rule>
+      <Filter>[value] &gt;= 0.00040 and [value] &lt; 0.00074</Filter>
+      <PolygonSymbolizer fill="#80ffe6" fill-opacity="0.75" />
+      <LineSymbolizer stroke-width="0" />
+    </Rule>
+    <Rule>
+      <Filter>[value] &gt;= 0.00074 and [value] &lt; 0.0013</Filter>
+      <PolygonSymbolizer fill="#4dffdb" fill-opacity="0.75" />
+      <LineSymbolizer stroke-width="0" />
+    </Rule>
+    <Rule>
+      <Filter>[value] &gt;= 0.0013 and [value] &lt; 0.0021</Filter>
+      <PolygonSymbolizer fill="#1affd1" fill-opacity="0.75" />
+      <LineSymbolizer stroke-width="0" />
+    </Rule>
+    <Rule>
+      <Filter>[value] &gt;= 0.0021 and [value] &lt; 0.0033</Filter>
+      <PolygonSymbolizer fill="#00e6b8" fill-opacity="0.75" />
+      <LineSymbolizer stroke-width="0" />
+    </Rule>
+    <Rule>
+      <Filter>[value] &gt;= 0.0033 and [value] &lt; 0.005</Filter>
+      <PolygonSymbolizer fill="#00b38f" fill-opacity="0.75" />
+      <LineSymbolizer stroke-width="0" />
+    </Rule>
+    <Rule>
+      <Filter>[value] &gt;= 0.005 and [value] &lt; 0.010</Filter>
+      <PolygonSymbolizer fill="#008066" fill-opacity="0.75" />
+      <LineSymbolizer stroke-width="0" />
+    </Rule>
+    <Rule>
+      <Filter>[value] &gt;= 0.010 and [value] &lt; 0.025</Filter>
+      <PolygonSymbolizer fill="#004d3e" fill-opacity="0.75" />
+      <LineSymbolizer stroke-width="0" />
+    </Rule>
+    <Rule>
+      <Filter>[value] &gt;= 0.025 and [value] &lt; 1</Filter>
+      <PolygonSymbolizer fill="#001a15" fill-opacity="0.75" />
+      <LineSymbolizer stroke-width="0" />
+    </Rule>
+  </Style>
+
+  <Layer name="subplaces2001" status="on" srs="+proj=latlong +datum=WGS84">
+      <StyleName>sequential</StyleName>
+      <Datasource>
+        <Parameter name="type">postgis</Parameter>
+        <Parameter name="host">localhost</Parameter>
+        <Parameter name="dbname">census2001</Parameter>
+        <Parameter name="user">el</Parameter>      
+        <Parameter name="password">ta4is00c</Parameter>
+        <Parameter name="table">(SELECT ogrgeojson.wkb_geometry, hh_density.value AS value FROM ogrgeojson RIGHT OUTER JOIN hh_density ON (ogrgeojson.sp_code = hh_density.sp_code)) as values</Parameter>
+        <Parameter name="estimate_extent">false</Parameter>
+	<!-- <Parameter name="extent">-180,-90,180,89.99</Parameter> -->
+      </Datasource>
+  </Layer>
+
+</Map> 
