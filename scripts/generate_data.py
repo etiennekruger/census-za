@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 Process xls files from the 2001 census and produce csvs
 This process is individual to each indicator
@@ -8,10 +10,6 @@ import json
 import csv
 import os
 import xlrd
-
-function_map = {
-
-}
 
 class Province(object):
     provinces = {}
