@@ -37,11 +37,11 @@ var map1 = po.map()
     .add(po.hash());
 
 map1.add(po.image()
-	.url(po.url("http://{S}tile.openstreetmap.org/{Z}/{X}/{Y}.png")
-	     .hosts(["a.", "b.", "c.", ""])));
-
+	.url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png")));
 map1.add(po.image()
 	.url(po.url("/static/tiles/hh_income/{Z}/{X}/{Y}.png")));
+map1.add(po.image()
+	.url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png")));
 
 var map2 = po.map()
     .container(document.getElementById("map2").appendChild(po.svg("svg")))
@@ -52,11 +52,11 @@ var map2 = po.map()
     .add(po.hash());
 
 map2.add(po.image()
-	.url(po.url("http://{S}tile.openstreetmap.org/{Z}/{X}/{Y}.png")
-	     .hosts(["a.", "b.", "c.", ""])));
-
+	.url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png")));
 map2.add(po.image()
 	.url(po.url("/static/tiles/hh_density/{Z}/{X}/{Y}.png")));
+map2.add(po.image()
+	.url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png")));
 
 var map3 = po.map()
     .container(document.getElementById("map3").appendChild(po.svg("svg")))
@@ -68,11 +68,11 @@ var map3 = po.map()
     .add(po.hash());
 
 map3.add(po.image()
-	.url(po.url("http://{S}tile.openstreetmap.org/{Z}/{X}/{Y}.png")
-	     .hosts(["a.", "b.", "c.", ""])));
-
+	.url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png")));
 map3.add(po.image()
 	.url(po.url("/static/tiles/hh_income/{Z}/{X}/{Y}.png")));
+map3.add(po.image()
+	.url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png")));
 
 var map4 = po.map()
     .container(document.getElementById("map4").appendChild(po.svg("svg")))
@@ -83,11 +83,11 @@ var map4 = po.map()
     .add(po.hash());
 
 map4.add(po.image()
-	.url(po.url("http://{S}tile.openstreetmap.org/{Z}/{X}/{Y}.png")
-	     .hosts(["a.", "b.", "c.", ""])));
-
+	.url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png")));
 map4.add(po.image()
 	.url(po.url("/static/tiles/hh_density/{Z}/{X}/{Y}.png")));
+map4.add(po.image()
+	.url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png")));
 
     </script>
   </body>
