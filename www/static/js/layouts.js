@@ -2,13 +2,20 @@ var po = org.polymaps;
 
 indicators = [
     { name : "Household incomes", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
-    { name : "Pit Latrines", url : "/static/tiles/hh_density/{Z}/{X}/{Y}.png" },
-    { name : "Access to electricity", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
-    { name : "Household size", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
-    { name : "Access to transport", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
-    { name : "Water quality", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
-    { name : "Education Levels", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
-    { name : "Crime", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
+    { name : "Household Density", url : "/static/tiles/norm_hh_density/{Z}/{X}/{Y}.png" },
+    { name : "Person Density", url : "/static/tiles/norm_pr_density/{Z}/{X}/{Y}.png" },
+    { name : "% Phone and Cell", url : "/static/tiles/perc_phone_and_cell/{Z}/{X}/{Y}.png" },
+    { name : "% Phone/Cell only", url : "/static/tiles/perc_phone_cell_only/{Z}/{X}/{Y}.png" },
+    { name : "% Phone nearby", url : "/static/tiles/perc_phone_nearby/{Z}/{X}/{Y}.png" },
+    { name : "% Phone neighbour", url : "/static/tiles/perc_phone_neighbour/{Z}/{X}/{Y}.png" },
+    { name : "% Phone none", url : "/static/tiles/perc_phone_none/{Z}/{X}/{Y}.png" },
+    { name : "% Phone only", url : "/static/tiles/perc_phone_only/{Z}/{X}/{Y}.png" },
+    { name : "% Phone not nearby", url : "/static/tiles/perc_phone_not_nearby/{Z}/{X}/{Y}.png" },
+    { name : "% Phone public", url : "/static/tiles/perc_phone_public/{Z}/{X}/{Y}.png" },
+    { name : "% Toilet bucket", url : "/static/tiles/perc_toilet_bucket/{Z}/{X}/{Y}.png" },
+    { name : "% Toilet chemical", url : "/static/tiles/perc_toilet_chemical/{Z}/{X}/{Y}.png" },
+    { name : "% Toilet flush", url : "/static/tiles/perc_toilet_flush/{Z}/{X}/{Y}.png" },
+    { name : "% No toilet", url : "/static/tiles/perc_toilet_none/{Z}/{X}/{Y}.png" },
 ]
 
 cellListener = function(cell, data) {
@@ -45,12 +52,16 @@ MapCell.prototype = {
             this.map.remove(this.layer3);
         }
 
+        //this.layer1 = po.image()
+        //    .url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png"));
         this.layer1 = po.image()
-            .url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png"));
+            .url(po.url("/static/tiles/base/{Z}/{X}/{Y}.png"));
         this.layer2 = po.image()
             .url(po.url(url));
         this.layer3 = po.image()
-            .url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png"));
+            .url(po.url("/static/tiles/overlay/{Z}/{X}/{Y}.png"));
+        //this.layer3 = po.image()
+        //    .url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png"));
 
         this.map.add(this.layer1);
         this.map.add(this.layer2);
