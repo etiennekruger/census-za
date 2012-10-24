@@ -1,17 +1,61 @@
+var po = org.polymaps;
 
 indicators = [
-    { name : "Household incomes", url : "http://path.to.indicator" },
-    { name : "Pit Latrines", url : "http://path.to.indicator" },
-    { name : "Access to electricity", url : "http://path.to.indicator" },
-    { name : "Household size", url : "http://path.to.indicator" },
-    { name : "Access to transport", url : "http://path.to.indicator" },
-    { name : "Water quality", url : "http://path.to.indicator" },
-    { name : "Education Levels", url : "http://path.to.indicator" },
-    { name : "Crime", url : "http://path.to.indicator" },
+    { name : "Household incomes", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
+    { name : "Pit Latrines", url : "/static/tiles/hh_density/{Z}/{X}/{Y}.png" },
+    { name : "Access to electricity", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
+    { name : "Household size", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
+    { name : "Access to transport", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
+    { name : "Water quality", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
+    { name : "Education Levels", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
+    { name : "Crime", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
 ]
 
 cellListener = function(cell, data) {
-    d3.selectAll("#" + cell).text(data.name);
+    //d3.selectAll("#" + cell).text(data.name);
+    mapping = {
+        "tl" : tlMap,
+        "tr" : trMap,
+        "bl" : blMap,
+        "br" : brMap,
+    }
+
+    var map = mapping[cell];
+    console.log(map);
+    map.draw(data.url);
+}
+
+MapCell = function(container) {
+    this.container = container[0][0];
+    this.map = po.map()
+        .container(this.container.appendChild(po.svg("svg")))
+        .center({lat: -28.6, lon: 23.2})
+        .zoom(4)
+        .zoomRange([4, 12])
+        .add(po.interact())
+        .add(po.hash());
+}
+
+MapCell.prototype = {
+    draw : function(url) {
+
+        if (this.layer1 !== undefined) {
+            this.map.remove(this.layer1);
+            this.map.remove(this.layer2);
+            this.map.remove(this.layer3);
+        }
+
+        this.layer1 = po.image()
+            .url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png"));
+        this.layer2 = po.image()
+            .url(po.url(url));
+        this.layer3 = po.image()
+            .url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png"));
+
+        this.map.add(this.layer1);
+        this.map.add(this.layer2);
+        this.map.add(this.layer3);
+    }
 }
 
 Grid4x4 = function(size, data) {
