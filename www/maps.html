@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--[if lte IE 7]>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<![endif]-->
+<html>
+    <head>
+        <link rel="stylesheet" media="all" type="text/css" href="static/css/stacklayout.css" />
+        <!--[if lte IE 7]>
+        <link rel="stylesheet" media="all" type="text/css" href="static/css/stacklayout_lte_ie7.css" />
+        <![endif]-->
+    </head>
+    <body>
+        <div id="page">
+            <div class="stack">
+                <div id="header">
+                    <div class="stackContent"><h1>Census Map</h1></div>
+                </div>
+                <div id="content">
+                    <div id="graphblock 2x2" class="stack3of4">
+                        <div id="toprow stack">
+                            <div id="tl" class="stack1of2">
+                                <div class="stackContent">
+                                    <img src="http://placehold.it/280x280" class="img-rounded">
+                                </div>
+                            </div>
+                            <div id="tl" class="stack1of2">
+                                <div class="stackContent">
+                                    <img src="http://placehold.it/280x280" class="img-rounded">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="bottomrow stack">
+                            <div id="tl" class="stack1of2">
+                                <div class="stackContent">
+                                    <img src="http://placehold.it/280x280" class="img-rounded">
+                                </div>
+                            </div>
+                            <div id="tl" class="stack1of2">
+                                <div class="stackContent">
+                                    <img src="http://placehold.it/280x280" class="img-rounded">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="column2" class="stack1of4">
+                        <div class="stackContent filterbox">
+                            <p>Search for Indicator</p>
+                            <input type="text" id="searchBox"/>
+                            <ul id="indicatorlist">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer" class="stackAuto">
+                    <div class="stackContent">
+                        <h3>HacksHackers Cape Town</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="http://d3js.org/d3.v2.min.js"></script>
+        <script type="text/javascript" src="static/js/layouts.js"></script>
+        <script type="text/javascript">
+
+           indicatorlist = new IndicatorList({
+               data : indicators,
+               rootElement : "#indicatorlist"
+           }); 
+           indicatorlist.display();
+            
+        </script>
+    </body>
+</html>
