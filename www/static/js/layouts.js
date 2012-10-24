@@ -1,5 +1,3 @@
-function drawGraphs(root) {
-}
 
 indicators = [
     { name : "Household incomes", url : "http://path.to.indicator" },
@@ -12,6 +10,39 @@ indicators = [
     { name : "Crime", url : "http://path.to.indicator" },
 ]
 
+cellListener = function(cell, data) {
+    d3.selectAll("#" + cell).text(data.name);
+}
+
+Grid4x4 = function(size, data) {
+    this.size = size;
+    this.data = data;
+    this.observers = [];
+}
+
+Grid4x4.prototype = {
+    draw : function(rootElement) {
+        var me = this;
+        var container = rootElement.append("div").classed("grid4x4 grid", true)
+        container.selectAll("div")
+            .data(["tl", "tr", "bl", "br"])
+            .enter()
+                .append("div")
+                .classed("cell", true)
+                .style("width", this.size + "px")
+                .style("height", this.size + "px")
+                .on("click", function(d) {
+                    me.observers.forEach(function(listener) {
+                        listener.call(me, d, me.data);
+                    })
+                });
+        container.append("div").style("clear", "left");
+    },
+    registerListener : function(listener) {
+        this.observers.push(listener);
+    }
+}
+
 /*
     Object to draw a particular indicator
 */
@@ -21,13 +52,12 @@ IndicatorItem = function(data) {
 
 IndicatorItem.prototype = {
     draw : function(rootElement) {
-        //rootElement.text(this.data.name);
         var me = this;
-        rootElement.append("a")
-            .attr("href", function() {
-                return me.data.url;
-            })
-            .text(this.data.name);
+        var container = rootElement.append("div")
+        var grid4x4 = new Grid4x4(6, this.data);
+        grid4x4.draw(container);
+        grid4x4.registerListener(cellListener);
+        container.append("span").text(this.data.name);
     }
 }
 
