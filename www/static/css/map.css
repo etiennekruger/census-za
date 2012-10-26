@@ -26,6 +26,8 @@
 .mapcell {
     border: solid thin black;
     height: 400px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
 /* Add transparent overlay onto maps */
