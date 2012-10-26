@@ -67,16 +67,16 @@
             indicatorlist.display();
 
             tlMap = new MapCell(d3.select("#tl"));
-            tlMap.draw("/static/tiles/hh_income/{Z}/{X}/{Y}.png");
+            tlMap.draw("/static/tiles/hh_income/{Z}/{X}/{Y}.png", "Household incomes");
 
             trMap = new MapCell(d3.select("#tr"));
-            trMap.draw("/static/tiles/hh_density/{Z}/{X}/{Y}.png");
+            trMap.draw("/static/tiles/hh_density/{Z}/{X}/{Y}.png", "Household density");
 
             blMap = new MapCell(d3.select("#bl"));
-            blMap.draw("/static/tiles/hh_income/{Z}/{X}/{Y}.png");
+            blMap.draw("/static/tiles/hh_income/{Z}/{X}/{Y}.png", "Household income");
 
             brMap = new MapCell(d3.select("#br"));
-            brMap.draw("/static/tiles/hh_income/{Z}/{X}/{Y}.png");
+            brMap.draw("/static/tiles/hh_income/{Z}/{X}/{Y}.png", "Household income");
             
         </script>
     </body>
