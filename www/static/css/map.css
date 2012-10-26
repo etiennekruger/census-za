@@ -51,15 +51,16 @@ div.mapcell div {
 
 div.mapcell div.blackbg {
     z-index: 2;
-    background-color: #000;
+    background-color: grey;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
     filter: alpha(opacity=50);
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 div.mapcell div.label {
     z-index: 3;
-    color: white;
+    color: black;
+    font-weight: bold;
 }
 
 /* End transparent overlay */
