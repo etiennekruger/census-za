@@ -1,0 +1,28 @@
+/* Styles for 4x4 grid */
+.grid4x4 {
+    width: 16px;
+    margin-right: 5px;
+}
+.grid4x4 .cell:first-child, .grid4x4 .cell:nth-child(3) {
+    border-left: solid 1px #999;
+}
+
+.grid4x4 .cell:first-child, .grid4x4 .cell:nth-child(2) {
+    border-top: solid 1px #999;
+}
+.grid4x4 .cell {
+    border-right: solid 1px #999;
+    border-bottom: solid 1px #999;
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    background-color: #ddd; 
+}
+.grid4x4 .cell:hover {
+    background-color: #aaa; 
+}
+
+.mapcell {
+    border: solid thin black;
+    height: 400px;
+}
