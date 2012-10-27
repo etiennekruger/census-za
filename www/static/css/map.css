@@ -2,6 +2,7 @@
 .grid4x4 {
     width: 16px;
     margin-right: 5px;
+    float: left;
 }
 .grid4x4 .cell:first-child, .grid4x4 .cell:nth-child(3) {
     border-left: solid 1px #999;
@@ -24,5 +25,49 @@
 
 .mapcell {
     border: solid thin black;
-    height: 400px;
+    /*height: 400px;*/ /* now added inline into the svg element because that's where firefox likes it */
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+/* Add transparent overlay onto maps */
+.mapcell {
+    position: relative;
+}
+
+div.mapcell svg.map { z-index: 1; }
+
+div.mapcell div {
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    bottom: 0;
+    padding: 4px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    overflow: hidden;
+}
+
+div.mapcell div.blackbg {
+    z-index: 2;
+    background-color: grey;
+    opacity: 0.6;
+}
+
+div.mapcell div.label {
+    z-index: 3;
+    color: black;
+    font-weight: bold;
+}
+
+/* End transparent overlay */
+
+ul#indicatorlist {
+    list-style-type: none;
+    padding-left: 5px;
+}
+
+.filterbox {
+    margin-left: 10px;
 }

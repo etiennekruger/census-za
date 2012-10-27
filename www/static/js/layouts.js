@@ -29,10 +29,11 @@ cellListener = function(cell, data) {
 
     var map = mapping[cell];
     console.log(map);
-    map.draw(data.url);
+    map.draw(data.url, data.name);
 }
 
 MapCell = function(container) {
+    this._container = container;
     this.container = container[0][0];
     this.map = po.map()
         .container(this.container.appendChild(po.svg("svg")))
@@ -41,10 +42,14 @@ MapCell = function(container) {
         .zoomRange([4, 12])
         .add(po.interact())
         .add(po.hash());
+
+    container.selectAll("svg").attr("width", "100%").attr("height", 400);
+    container.append("div").classed("blackbg", true)
+    container.append("div").classed("label", true)
 }
 
 MapCell.prototype = {
-    draw : function(url) {
+    draw : function(url, name) {
 
         if (this.layer1 !== undefined) {
             this.map.remove(this.layer1);
@@ -52,20 +57,24 @@ MapCell.prototype = {
             this.map.remove(this.layer3);
         }
 
-        //this.layer1 = po.image()
-        //    .url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png"));
         this.layer1 = po.image()
-            .url(po.url("/static/tiles/base/{Z}/{X}/{Y}.png"));
+            .url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png"));
+        //this.layer1 = po.image()
+        //    .url(po.url("/static/tiles/base/{Z}/{X}/{Y}.png"));
         this.layer2 = po.image()
             .url(po.url(url));
-        this.layer3 = po.image()
-            .url(po.url("/static/tiles/overlay/{Z}/{X}/{Y}.png"));
         //this.layer3 = po.image()
-        //    .url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png"));
+        //    .url(po.url("/static/tiles/overlay/{Z}/{X}/{Y}.png"));
+        this.layer3 = po.image()
+            .url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png"));
 
         this.map.add(this.layer1);
         this.map.add(this.layer2);
         this.map.add(this.layer3);
+
+        this._container.select(".label").text(function() {
+            return name;
+        });
     }
 }
 
