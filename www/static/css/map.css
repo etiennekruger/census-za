@@ -25,7 +25,7 @@
 
 .mapcell {
     border: solid thin black;
-    height: 400px;
+    /*height: 400px;*/ /* now added inline into the svg element because that's where firefox likes it */
     margin-left: 10px;
     margin-top: 10px;
 }
@@ -52,8 +52,6 @@ div.mapcell div {
 div.mapcell div.blackbg {
     z-index: 2;
     background-color: grey;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-    filter: alpha(opacity=50);
     opacity: 0.6;
 }
 

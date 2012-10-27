@@ -43,6 +43,7 @@ MapCell = function(container) {
         .add(po.interact())
         .add(po.hash());
 
+    container.selectAll("svg").attr("width", "100%").attr("height", 400);
     container.append("div").classed("blackbg", true)
     container.append("div").classed("label", true)
 }
