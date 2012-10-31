@@ -75,3 +75,12 @@ ul#indicatorlist {
 .footnote {
     text-align: left;
 }
+
+.source {
+    font-size: 0.75em;
+    color: #040404;
+}
+
+.census2001 {
+    background-color: #EBDA99;
+}

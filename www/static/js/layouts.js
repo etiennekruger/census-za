@@ -1,25 +1,25 @@
 var po = org.polymaps;
 
 indicators = [
-    { name : "Household incomes", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
-    { name : "Household Density", url : "/static/tiles/norm_hh_density/{Z}/{X}/{Y}.png" },
-    { name : "Person Density", url : "/static/tiles/norm_pr_density/{Z}/{X}/{Y}.png" },
-    { name : "% Phone and Cell", url : "/static/tiles/perc_phone_and_cell/{Z}/{X}/{Y}.png" },
-    { name : "% Phone/Cell only", url : "/static/tiles/perc_phone_cell_only/{Z}/{X}/{Y}.png" },
-    { name : "% Phone nearby", url : "/static/tiles/perc_phone_nearby/{Z}/{X}/{Y}.png" },
-    { name : "% Phone neighbour", url : "/static/tiles/perc_phone_neighbour/{Z}/{X}/{Y}.png" },
-    { name : "% Phone none", url : "/static/tiles/perc_phone_none/{Z}/{X}/{Y}.png" },
-    { name : "% Phone only", url : "/static/tiles/perc_phone_only/{Z}/{X}/{Y}.png" },
-    { name : "% Phone not nearby", url : "/static/tiles/perc_phone_not_nearby/{Z}/{X}/{Y}.png" },
-    { name : "% Phone public", url : "/static/tiles/perc_phone_public/{Z}/{X}/{Y}.png" },
-    { name : "% Toilet bucket", url : "/static/tiles/perc_toilet_bucket/{Z}/{X}/{Y}.png" },
-    { name : "% Toilet chemical", url : "/static/tiles/perc_toilet_chemical/{Z}/{X}/{Y}.png" },
-    { name : "% Toilet flush", url : "/static/tiles/perc_toilet_flush/{Z}/{X}/{Y}.png" },
-    { name : "% No toilet", url : "/static/tiles/perc_toilet_none/{Z}/{X}/{Y}.png" },
-    { name : "% Pit Latrine (no ventilation)", url : "/static/tiles/perc_toilet_pitlatrine_no_ventilation/{Z}/{X}/{Y}.png" },
-    { name : "% Pit Latrine (ventilation)", url : "/static/tiles/perc_toilet_pitlatrine_ventilation/{Z}/{X}/{Y}.png" },
-    { name : "% Septic Tank", url : "/static/tiles/perc_toilet_septic/{Z}/{X}/{Y}.png" },
-    { name : "Plain map", url : "#" },
+    { source : "census2001", name : "Household incomes", url : "/static/tiles/hh_income/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "Household Density", url : "/static/tiles/norm_hh_density/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "Person Density", url : "/static/tiles/norm_pr_density/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Phone and Cell", url : "/static/tiles/perc_phone_and_cell/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Phone/Cell only", url : "/static/tiles/perc_phone_cell_only/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Phone nearby", url : "/static/tiles/perc_phone_nearby/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Phone neighbour", url : "/static/tiles/perc_phone_neighbour/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Phone none", url : "/static/tiles/perc_phone_none/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Phone only", url : "/static/tiles/perc_phone_only/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Phone not nearby", url : "/static/tiles/perc_phone_not_nearby/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Phone public", url : "/static/tiles/perc_phone_public/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Toilet bucket", url : "/static/tiles/perc_toilet_bucket/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Toilet chemical", url : "/static/tiles/perc_toilet_chemical/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Toilet flush", url : "/static/tiles/perc_toilet_flush/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% No toilet", url : "/static/tiles/perc_toilet_none/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Pit Latrine (no ventilation)", url : "/static/tiles/perc_toilet_pitlatrine_no_ventilation/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Pit Latrine (ventilation)", url : "/static/tiles/perc_toilet_pitlatrine_ventilation/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "% Septic Tank", url : "/static/tiles/perc_toilet_septic/{Z}/{X}/{Y}.png" },
+    { source : "census2001", name : "Plain map", url : "#" },
 ]
 
 cellListener = function(cell, data) {
@@ -125,7 +125,8 @@ IndicatorItem.prototype = {
         var grid4x4 = new Grid4x4(6, this.data);
         grid4x4.draw(container);
         grid4x4.registerListener(cellListener);
-        container.append("span").text(this.data.name);
+        container.append("span").classed("source census2001", true).text(this.data.source);
+        container.append("span").text(" " + this.data.name);
     }
 }
 
