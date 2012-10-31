@@ -16,6 +16,10 @@ indicators = [
     { name : "% Toilet chemical", url : "/static/tiles/perc_toilet_chemical/{Z}/{X}/{Y}.png" },
     { name : "% Toilet flush", url : "/static/tiles/perc_toilet_flush/{Z}/{X}/{Y}.png" },
     { name : "% No toilet", url : "/static/tiles/perc_toilet_none/{Z}/{X}/{Y}.png" },
+    { name : "% Pit Latrine (no ventilation)", url : "/static/tiles/perc_toilet_pitlatrine_no_ventilation/{Z}/{X}/{Y}.png" },
+    { name : "% Pit Latrine (ventilation)", url : "/static/tiles/perc_toilet_pitlatrine_ventilation/{Z}/{X}/{Y}.png" },
+    { name : "% Septic Tank", url : "/static/tiles/perc_toilet_septic/{Z}/{X}/{Y}.png" },
+    { name : "Plain map", url : "#" },
 ]
 
 cellListener = function(cell, data) {
@@ -57,16 +61,16 @@ MapCell.prototype = {
             this.map.remove(this.layer3);
         }
 
-        this.layer1 = po.image()
-            .url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png"));
         //this.layer1 = po.image()
-        //    .url(po.url("/static/tiles/base/{Z}/{X}/{Y}.png"));
+        //    .url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png"));
+        this.layer1 = po.image()
+            .url(po.url("/static/tiles/toner-no-labels/{Z}/{X}/{Y}.png"));
         this.layer2 = po.image()
             .url(po.url(url));
         //this.layer3 = po.image()
-        //    .url(po.url("/static/tiles/overlay/{Z}/{X}/{Y}.png"));
+        //    .url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png"));
         this.layer3 = po.image()
-            .url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png"));
+            .url(po.url("/static/tiles/toner-labels/{Z}/{X}/{Y}.png"));
 
         this.map.add(this.layer1);
         this.map.add(this.layer2);
