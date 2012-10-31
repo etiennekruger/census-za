@@ -1,94 +1,84 @@
+<!DOCTYPE html>
+<!--[if lte IE 7]>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<![endif]-->
 <html>
-  <head>
-    <title>Census 2001 - Demo</title>
-    <style>
-    #map1, #map2, #map3, #map4 {
-        width: 40%;
-        height: 49%;
-        float: left;
-        border: solid thin black;
-    }
+    <head>
+        <link rel="stylesheet" media="all" type="text/css" href="static/css/stacklayout.css" />
+        <link rel="stylesheet" media="all" type="text/css" href="static/css/map.css" />
+        <!--[if lte IE 7]>
+        <link rel="stylesheet" media="all" type="text/css" href="static/css/stacklayout_lte_ie7.css" />
+        <link rel="stylesheet" media="all" type="text/css" href="static/css/map_ie.css" />
+        <![endif]-->
+    </head>
+    <body>
+        <div id="page">
+            <div class="stack">
+                <div id="header">
+                    <div class="stackContent"><h1>Census Map</h1></div>
+                </div>
+                <div id="content">
+                    <div id="graphblock 2x2" class="stack3of4">
+                        <div id="toprow stack">
+                            <div class="stack1of2">
+                                <div id="tl" class="stackContent mapcell">
+                                </div>
+                            </div>
+                            <div class="stack1of2">
+                                <div id="tr" class="stackContent mapcell">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="bottomrow stack">
+                            <div class="stack1of2">
+                                <div id="bl" class="stackContent mapcell">
+                                </div>
+                            </div>
+                            <div class="stack1of2">
+                                <div id="br" class="stackContent mapcell">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="column2" class="stack1of4">
+                        <div class="stackContent filterbox">
+                            <p>Search for Indicator</p>
+                            <input type="text" id="searchBox"/>
+                            <ul id="indicatorlist">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer" class="stackAuto">
+                    <div class="stackContent">
+                        <h3>HacksHackers Cape Town</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="http://d3js.org/d3.v2.min.js"></script>
+        <script src="polymaps.min.js"></script>
+        <script type="text/javascript" src="static/js/layouts.js"></script>
+        <script type="text/javascript">
 
-    #map1, #map2 {
-        padding-bottom: 5px;
-    }
+            indicatorlist = new IndicatorList({
+                data : indicators,
+                rootElement : "#indicatorlist"
+            }); 
+            indicatorlist.display();
 
-    #map3, #map4 {
-        padding-top: 2px;
-    }
-    </style>
-    <script src="polymaps.min.js"></script>
-  </head>
-  <body>
-    <div id="map1"></div>
-    <div id="map2"></div>
-    <div id="map3"></div>
-    <div id="map4"></div>
-    <script>
-var po = org.polymaps;
+            tlMap = new MapCell(d3.select("#tl"));
+            tlMap.draw("/static/tiles/hh_income/{Z}/{X}/{Y}.png", "Household incomes");
 
-var map1 = po.map()
-    .container(document.getElementById("map1").appendChild(po.svg("svg")))
-    .center({lat: -28.6, lon: 23.2})
-    /*.centerRange([{lat: -45.0, lon: 11.25}, {lat: -22.5, lon: 45.0}])*/
-    .zoom(4)
-    .zoomRange([4, 12])
-    .add(po.interact())
-    .add(po.hash());
+            trMap = new MapCell(d3.select("#tr"));
+            trMap.draw("/static/tiles/hh_density/{Z}/{X}/{Y}.png", "Household density");
 
-map1.add(po.image()
-	.url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png")));
-map1.add(po.image()
-	.url(po.url("/static/tiles/hh_income/{Z}/{X}/{Y}.png")));
-map1.add(po.image()
-	.url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png")));
+            blMap = new MapCell(d3.select("#bl"));
+            blMap.draw("/static/tiles/hh_income/{Z}/{X}/{Y}.png", "Household income");
 
-var map2 = po.map()
-    .container(document.getElementById("map2").appendChild(po.svg("svg")))
-    .center({lat: -28.6, lon: 23.2})
-    .zoom(4)
-    .zoomRange([4, 12])
-    .add(po.interact())
-    .add(po.hash());
-
-map2.add(po.image()
-	.url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png")));
-map2.add(po.image()
-	.url(po.url("/static/tiles/hh_density/{Z}/{X}/{Y}.png")));
-map2.add(po.image()
-	.url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png")));
-
-var map3 = po.map()
-    .container(document.getElementById("map3").appendChild(po.svg("svg")))
-    .center({lat: -28.6, lon: 23.2})
-    /*.centerRange([{lat: -45.0, lon: 11.25}, {lat: -22.5, lon: 45.0}])*/
-    .zoom(4)
-    .zoomRange([4, 12])
-    .add(po.interact())
-    .add(po.hash());
-
-map3.add(po.image()
-	.url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png")));
-map3.add(po.image()
-	.url(po.url("/static/tiles/hh_income/{Z}/{X}/{Y}.png")));
-map3.add(po.image()
-	.url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png")));
-
-var map4 = po.map()
-    .container(document.getElementById("map4").appendChild(po.svg("svg")))
-    .center({lat: -28.6, lon: 23.2})
-    .zoom(4)
-    .zoomRange([4, 12])
-    .add(po.interact())
-    .add(po.hash());
-
-map4.add(po.image()
-	.url(po.url("http://tilefarm.stamen.com/toner-no-labels/{Z}/{X}/{Y}.png")));
-map4.add(po.image()
-	.url(po.url("/static/tiles/hh_density/{Z}/{X}/{Y}.png")));
-map4.add(po.image()
-	.url(po.url("http://tilefarm.stamen.com/toner-labels/{Z}/{X}/{Y}.png")));
-
-    </script>
-  </body>
+            brMap = new MapCell(d3.select("#br"));
+            brMap.draw("/static/tiles/hh_income/{Z}/{X}/{Y}.png", "Household income");
+            
+        </script>
+    </body>
 </html>
